@@ -16,7 +16,7 @@ public class Controller {
     @PostMapping(produces = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     private Map<String, String> side(@RequestBody Map<String, String> sidesRequest) {
-        if(sidesRequest.size() != 4) { throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Должно быть 4 стороны света!"); }
+        if(sidesRequest.size() != 8) { throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Должно быть 8 сторон света!"); }
         sides.putAll(sidesRequest);
         return sides;
     }
@@ -40,3 +40,16 @@ public class Controller {
         return Collections.singletonMap("Side", result);
     }
 }
+
+/* Side
+{
+"North": "0-45",
+"North-East": "46-90",
+"East": "91-135",
+"South-East": "136-180",
+"South": "181-225",
+"South-West": "226-270",
+"West": "271-315",
+"North-West": "315-360"
+}
+ */
