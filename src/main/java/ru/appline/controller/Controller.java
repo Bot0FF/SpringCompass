@@ -17,6 +17,7 @@ public class Controller {
     @ResponseStatus(HttpStatus.CREATED)
     private Map<String, String> side(@RequestBody Map<String, String> sidesRequest) {
         if(sidesRequest.size() != 8) { throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Должно быть 8 сторон света!"); }
+        sides.clear();
         sides.putAll(sidesRequest);
         return sides;
     }
@@ -34,7 +35,8 @@ public class Controller {
             String[] numbers = entry.getValue().split("-");
             if (degree >= Integer.parseInt(numbers[0]) && degree <= Integer.parseInt(numbers[1])) {
                 result = entry.getKey();
-            }
+                break;
+            } else result = "North";
         }
 
         return Collections.singletonMap("Side", result);
@@ -43,13 +45,13 @@ public class Controller {
 
 /* Side
 {
-"North": "0-45",
-"North-East": "46-90",
+"North": "345-15",
+"North-East": "16-90",
 "East": "91-135",
 "South-East": "136-180",
 "South": "181-225",
 "South-West": "226-270",
 "West": "271-315",
-"North-West": "315-360"
+"North-West": "316-344"
 }
  */
